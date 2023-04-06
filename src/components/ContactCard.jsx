@@ -1,20 +1,34 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 const ContactCard = (props) => {
+  const onclickHandler = () => {
+    if (window.confirm(`You Want To Delete ${name}'s Contact?`)) {
+      props.clickHandler(props.contact.id);
+    }
+  };
   const { name, email, id } = props.contact;
-  console.log(id);
   return (
     <div>
       <div className="item d-flex mt-3">
         <div className="content ">
           <i className="fa fa-user" aria-hidden="true"></i>
           <h1 className="h1">{name}</h1>
-          <h6 className="h6">{email}</h6>
+          <NavLink
+            to={{
+              pathname: `/contact/${id}`,
+              state: {
+                contact: props.contact,
+              },
+            }}
+          >
+            <h6 className="h6">{email}</h6>
+          </NavLink>
         </div>
         <div className="ms-auto">
           <i
             className="fas fa-trash"
             style={{ color: "red", marginTop: "7px" }}
-            onClick={() => props.clickHandler(id)}
+            onClick={onclickHandler}
           ></i>
         </div>
       </div>

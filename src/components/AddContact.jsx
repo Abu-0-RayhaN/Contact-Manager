@@ -13,7 +13,7 @@ export default class AddContact extends Component {
     } else {
       this.props.AddContactHandler(this.state);
       this.setState({ name: "", email: "" });
-      console.log(this.state);
+      this.props.history.push("/");
     }
   };
   render() {
