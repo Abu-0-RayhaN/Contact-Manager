@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 const ContactCard = (props) => {
   const onclickHandler = () => {
     if (window.confirm(`You Want To Delete ${name}'s Contact?`)) {
@@ -27,9 +27,18 @@ const ContactCard = (props) => {
         <div className="ms-auto">
           <i
             className="fas fa-trash"
-            style={{ color: "red", marginTop: "7px" }}
+            style={{ color: "red", margin: "20px" }}
             onClick={onclickHandler}
           ></i>
+
+          <Link
+            to={{ pathname: `/edit/${id}`, state: { contact: props.contact } }}
+          >
+            <i
+              className="fas fa-edit"
+              style={{ color: "red", marginTop: "7px" }}
+            ></i>
+          </Link>
         </div>
       </div>
     </div>
