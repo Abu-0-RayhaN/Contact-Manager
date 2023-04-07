@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useRef } from "react";
 import ContactCard from "./ContactCard";
 import { NavLink } from "react-router-dom";
 const ContactList = (props) => {
+  const inputEl = useRef("");
   const deleteContactHandler = (id) => {
     props.getContactId(id);
   };
-
+  const getSearchTerm = () => {
+    props.searchKeyword(inputEl.current.value);
+  };
   const rendereContactList = props.contacts.map((contact) => {
     return (
       <div>
@@ -35,10 +38,12 @@ const ContactList = (props) => {
       <div>
         <form className="d-flex">
           <input
+            ref={inputEl}
             className="form-control me-2"
             type="search"
             placeholder="Search"
-            aria-label="Search"
+            value={props.term}
+            onChange={getSearchTerm}
           />
           <button className="btn btn-outline-success" type="submit">
             Search
