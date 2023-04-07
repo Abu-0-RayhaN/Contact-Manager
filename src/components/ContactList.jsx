@@ -50,7 +50,13 @@ const ContactList = (props) => {
           </button>
         </form>
       </div>
-      <div>{rendereContactList}</div>
+      <div className="contain">
+        {rendereContactList.length > 0 ? (
+          rendereContactList
+        ) : (
+          <div className=" text-danger  h1 m-1">No Contacts To Show</div>
+        )}
+      </div>
     </div>
   );
 };
